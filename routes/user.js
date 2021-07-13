@@ -17,8 +17,7 @@ router.post('/user/register',(req, res) => {
 		return res.status(400).json(error);
 	}
 	else{
-		const userFirstName = req.body.userFirstName;
-		const userLastName = req.body.userLastName;
+		const userFullName = req.body.userFullName;
 		const userEmailAddress = req.body.userEmailAddress;
 		const userPassword = req.body.userPassword;
 		const userContactNumber = req.body.userContactNumber;
@@ -27,8 +26,7 @@ router.post('/user/register',(req, res) => {
 		bcrypt.hash(userPassword,10,function(error,hash){
 
 				var userDetails = new User({
-					userFirstName: userFirstName,
-					userLastName: userLastName,
+					userFullName: userFullName,
 					userEmailAddress: userEmailAddress,
 					userPassword : hash,
 					userContactNumber: userContactNumber,

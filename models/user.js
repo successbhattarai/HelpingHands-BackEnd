@@ -6,8 +6,8 @@ const jsonWebToken = require('jsonwebtoken');
 const User = mongoose.model('User', {
 
     // Personal Details
-    userFirstName: { type: String, require :true},
-    userLastName: { type: String, require :true},
+    userFullName: { type: String, require :true},
+    userBalance: { type: String, default:"1000"},
     userEmailAddress: { type: String, require:true, unique:true },
     userContactNumber: { type: String, require :true, unique:true},
     userPassword: { type: String, require :true},
