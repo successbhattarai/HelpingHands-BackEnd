@@ -9,11 +9,13 @@ const static_path = path.join(__dirname,'');
 // Connect to mongoDB database
 const connectDB = require('./db/db');
 
-const user_routes = require('./routes/user');
+const userRoutes = require('./routes/user');
+const contactRoutes = require('./routes/contact');
 app.use(express.static(static_path))
 app.use(express.json())
 app.use(cors());
-app.use(user_routes);
+app.use(userRoutes);
+app.use(contactRoutes);
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.listen(port,() => {
