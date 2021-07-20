@@ -61,6 +61,24 @@ router.post('/volunteer/register',volunteer.single('volunteerImage'),(req, res) 
 	}
 });
 
+// Volunteer Display All
+router.get('/volunteer/display',(req,res) => {
+	Volunteer.find().then(function(volunteerDetails){
+		res.send(volunteerDetails);
+	})
+});
+
+// Volunteer Display Single
+router.get("/volunteer/display/:id",function(req,res){    
+    const id = req.params.id;
+    Volunteer.findOne({_id:id})
+    .then(function(data){
+        res.status(200).json(data);
+    })
+    .catch(function(err){
+        res.status(500).json({message : err})
+    })
+});
 
 
 module.exports = router;
