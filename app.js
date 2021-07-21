@@ -13,6 +13,7 @@ const userRoutes = require('./routes/user');
 const contactRoutes = require('./routes/contact');
 const volunteerRoutes = require('./routes/volunteer');
 const blogRoutes = require('./routes/blog');
+const campaignRoutes = require('./routes/campaign');
 app.use(express.static(static_path))
 app.use(express.json())
 app.use(cors());
@@ -20,6 +21,7 @@ app.use(userRoutes);
 app.use(contactRoutes);
 app.use(volunteerRoutes);
 app.use(blogRoutes);
+app.use(campaignRoutes);
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.listen(port,() => {
