@@ -1,16 +1,17 @@
 
 
 const mongoose = require('mongoose');
-const jsonWebToken = require('jsonwebtoken');
+const crypto = require('crypto');
 
-const User = mongoose.model('User', {
+const userSchema = new mongoose.Schema( {
 
     // Personal Details
-    userFullName: { type: String, require :true},
-    userBalance: { type: String, default:"1000"},
+    userFirstName: { type: String, require :true},
+    userLastName: { type: String, require :true},
     userEmailAddress: { type: String, require:true, unique:true },
-    userContactNumber: { type: String, require :true, unique:true},
+    userContactNumber: { type: String, require :true},
     userPassword: { type: String, require :true},
 });
 
-module.exports = User;
+module.exports = mongoose.model('User',userSchema);
+
