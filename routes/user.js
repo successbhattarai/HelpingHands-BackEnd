@@ -6,13 +6,13 @@ const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
 
 
-const {signup,activateAccount} = require("../controllers/auth.js");
+const {signup,activateAccount} = require("../middleware/auth");
 //User Register
 router.post('/user/register',signup);
 
 //email-activate
 router.post('/userr/email-activate',activateAccount);
-module.exports = router;
+
 
 // User Login
 router.post('/user/login',function(req,res){

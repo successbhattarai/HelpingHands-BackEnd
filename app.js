@@ -1,13 +1,13 @@
 const express = require('express'); //Third Party
 const bodyParser = require('body-parser'); // Core Module
 const app = express();
-const port = process.env.PORT || 9000;
 const path = require('path');
 const cors = require('cors');
 const static_path = path.join(__dirname,'');
 
 // Connect to mongoDB database
-const connectDB = require('./db/db');
+require('dotenv').config();
+require("./db/db");
 
 const userRoutes = require('./routes/user');
 const contactRoutes = require('./routes/contact');
@@ -26,6 +26,7 @@ app.use(eventRoutes);
 app.use(campaignRoutes);
 app.use(bodyParser.urlencoded({extended:false}));
 
+const port = process.env.PORT;
 app.listen(port,() => {
-     console.log(`Activated Port No. ${port}`)
+     console.log(`Server is running on Port No. ${port}`)
 });
