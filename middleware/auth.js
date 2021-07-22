@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const jwt =require('jsonwebtoken');
 const mailgun = require('mailgun-js')
-const DOMAIN='sandbox54b8f4bc9cdb4f949d0ee369427d5f3c.mailgun.org';
+const DOMAIN='sandbox71e3804024f44659b2e2b132b2952cb5.mailgun.org';
 const mg = mailgun({apiKey:process.env.MAILGUN_APIKEY, domain:DOMAIN});
 
 exports.signup=(req, res)=>{

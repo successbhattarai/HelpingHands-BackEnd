@@ -11,7 +11,7 @@ const {signup,activateAccount} = require("../middleware/auth");
 router.post('/user/register',signup);
 
 //email-activate
-router.post('/userr/email-activate',activateAccount);
+router.post('/user/email-activate',activateAccount);
 
 
 // User Login
