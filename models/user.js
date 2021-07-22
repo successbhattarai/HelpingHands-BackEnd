@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema( {
     userEmailAddress: { type: String, require:true, unique:true },
     userContactNumber: { type: String, require :true},
     userPassword: { type: String, require :true},
+    restLink:{
+        data:String,
+        default:''}
 });
 
 module.exports = mongoose.model('User',userSchema);
