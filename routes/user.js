@@ -5,51 +5,20 @@ const bcrypt = require('bcryptjs');
 const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
 
+
+const {signup,activateAccount,forgetPassword,resetPassword} = require("../middleware/auth");
 //User Register
-router.post('/user/register',(req, res) => {
-	console.log("Entered Register Route");
+router.post('/user/register',signup);
 
-	const errors = validationResult(req);
+//email-activate
+router.post('/user/email-activate',activateAccount);
 
-	//When There is Error
-	if(!errors.isEmpty()){
-		var error = errors.array();
-		return res.status(400).json(error);
-	}
-	else{
-		const userFullName = req.body.userFullName;
-		const userEmailAddress = req.body.userEmailAddress;
-		const userPassword = req.body.userPassword;
-		const userContactNumber = req.body.userContactNumber;
+//forget password
 
 
-		bcrypt.hash(userPassword,10,function(error,hash){
+router.put('/user/forget-password', forgetPassword)
+router.put('/user/reset-password', resetPassword)
 
-				var userDetails = new User({
-					userFullName: userFullName,
-					userEmailAddress: userEmailAddress,
-					userPassword : hash,
-					userContactNumber: userContactNumber,
-
-				});
-				userDetails.save()
-				.then(function(data){
-					res.status(201).json({ 
-						success: true, message : "Successfully Registered"
-					})
-					console.log("User Registered");
-					console.log(userDetails);
-				})
-				.catch(function(error){
-					res.status(500).json({
-						message: "User Registertion Failed, Please Try Again"
-					})
-					console.log(error);
-					console.log("User Registertion Failed");
-				});
-		});
-	}
-});
 
 // User Login
 router.post('/user/login',function(req,res){
