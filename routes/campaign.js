@@ -31,7 +31,7 @@ router.post('/campaign/insert',campaign.single('campaignImage'),(req, res) => {
 		
 
 
-		var campaignFullDescriptions = new Campaign({
+		var Post = new Campaign({
 			campaignImage: campaignImage,
 			campaignName: campaignName,
 			campaignShortDescription: campaignShortDescription,
@@ -43,13 +43,13 @@ router.post('/campaign/insert',campaign.single('campaignImage'),(req, res) => {
 			
 		});
 				
-	    campaignFullDescriptions.save()
+	    Post.save()
 		.then(function(data){
 			res.status(201).json({ 
 				success: true, message : "Campaign Added"
 			})
 			console.log("Campaign Added");
-			console.log(campaignFullDescriptions);
+			console.log(Post);
 		})
 		.catch(function(error){
 			res.status(500).json({
@@ -62,8 +62,16 @@ router.post('/campaign/insert',campaign.single('campaignImage'),(req, res) => {
 });
 
 router.get('/campaign/display',(req,res) => {
-	Campaign.find().then(function(campaignFullDescriptions){
-		res.send(campaignFullDescriptions);
+	Campaign.find().then(function(Post){
+		res.send(Post);
+	})
+});
+
+router.get('/campaign/display/education',(req,res) => {
+	var education = { campaignCategories: "Education" };
+	Campaign.find(education)
+	.then(function(Post){
+		res.send(Post);
 	})
 });
 

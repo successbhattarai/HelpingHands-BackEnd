@@ -33,7 +33,7 @@ router.post('/event/insert',event.single('eventImage'),(req, res) => {
 		
 
 
-		var eventFullDescriptions = new Event({
+		var Post = new Event({
 			eventImage: eventImage,
 			eventName: eventName,
 			eventShortDescription: eventShortDescription,
@@ -47,13 +47,13 @@ router.post('/event/insert',event.single('eventImage'),(req, res) => {
 			
 		});
 				
-	    eventFullDescriptions.save()
+	    Post.save()
 		.then(function(data){
 			res.status(201).json({ 
 				success: true, message : "Event Added"
 			})
 			console.log("Event Added");
-			console.log(eventFullDescriptions);
+			console.log(Post);
 		})
 		.catch(function(error){
 			res.status(500).json({
@@ -66,8 +66,17 @@ router.post('/event/insert',event.single('eventImage'),(req, res) => {
 });
 
 router.get('/event/display',(req,res) => {
-	Event.find().then(function(eventFullDescriptions){
-		res.send(eventFullDescriptions);
+	Event.find()
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
+router.get('/event/display/education',(req,res) => {
+	var education = { eventCategories: "Education" };
+	Event.find(education)
+	.then(function(Post){
+		res.send(Post);
 	})
 });
 
