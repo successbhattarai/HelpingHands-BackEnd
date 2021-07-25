@@ -68,4 +68,17 @@ router.post('/user/login',function(req,res){
 })
 
 
+router.get("/account/:id",function(req,res){    
+	console.log("Account")
+    const id = req.params.id;
+	console.log(id)
+    User.findOne({_id:id})
+    .then(function(result){
+        res.status(200).json(result);
+    })
+    .catch(function(err){
+        res.status(500).json({message : err})
+    })
+});
+
 module.exports = router;

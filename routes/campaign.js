@@ -67,6 +67,13 @@ router.get('/campaign/display',(req,res) => {
 	})
 });
 
+router.get('/campaign/display/limit=3',(req,res) => {
+	Campaign.find().limit(3)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
 router.get('/campaign/display/education',(req,res) => {
 	var education = { campaignCategories: "Education" };
 	Campaign.find(education)

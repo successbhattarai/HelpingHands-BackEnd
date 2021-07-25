@@ -15,6 +15,7 @@ const volunteerRoutes = require('./routes/volunteer');
 const blogRoutes = require('./routes/blog');
 const campaignRoutes = require('./routes/campaign');
 const eventRoutes = require('./routes/event');
+const donationRoutes = require('./routes/donation');
 app.use(express.static(static_path))
 app.use(express.json())
 app.use(cors());
@@ -24,6 +25,7 @@ app.use(volunteerRoutes);
 app.use(blogRoutes);
 app.use(eventRoutes);
 app.use(campaignRoutes);
+app.use(donationRoutes);
 app.use(bodyParser.urlencoded({extended:false}));
 
 const port = process.env.PORT;
