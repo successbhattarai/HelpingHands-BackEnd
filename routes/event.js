@@ -80,6 +80,13 @@ router.get('/event/display/education',(req,res) => {
 	})
 });
 
+router.get('/event/display/limit=3',(req,res) => {
+	Event.find().limit(3)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
 // User Display Single
 router.get("/event/display/:id",function(req,res){    
     const id = req.params.id;

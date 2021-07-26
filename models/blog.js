@@ -10,7 +10,7 @@ const Blog = mongoose.model('Blog', {
      blogDescription: { type: String, require :true},
      blogDetail: { type: String, require :true},
      blogTags: { type: String,require:true},
-     blogPostDtae:{ type: Date, default: Date.now}
+     blogPostDate:{ type: Date, default: Date.now}
 });
 
 module.exports = Blog;

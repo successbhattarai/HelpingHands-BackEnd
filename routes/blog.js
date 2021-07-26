@@ -59,6 +59,14 @@ router.get('/blog/display',(req,res) => {
 	})
 });
 
+router.get('/blog/latest',(req,res) => {
+	var mysort = { blogPostDate: -1 };
+	Blog.find().sort(mysort).limit(2)
+	.then(function(blogDetails){
+		res.send(blogDetails);
+	})
+});
+
 // User Display Single
 router.get("/blog/display/:id",function(req,res){    
     const id = req.params.id;
