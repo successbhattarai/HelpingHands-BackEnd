@@ -46,4 +46,10 @@ router.post('/donate',
         console.log("Donated Successfully")
 	}
 });
+
+router.get('/donation/display',(req,res) => {
+	Donation.find().then(function(donationDetails){
+		res.send(donationDetails);
+	})
+});
 module.exports = router;

@@ -59,9 +59,17 @@ router.get('/blog/display',(req,res) => {
 	})
 });
 
-router.get('/blog/latest',(req,res) => {
+router.get('/blog/latest/limit=2',(req,res) => {
 	var mysort = { blogPostDate: -1 };
 	Blog.find().sort(mysort).limit(2)
+	.then(function(blogDetails){
+		res.send(blogDetails);
+	})
+});
+
+router.get('/blog/latest/limit=3',(req,res) => {
+	var mysort = { blogPostDate: -1 };
+	Blog.find().sort(mysort).limit(3)
 	.then(function(blogDetails){
 		res.send(blogDetails);
 	})

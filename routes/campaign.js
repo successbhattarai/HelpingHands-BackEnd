@@ -6,7 +6,7 @@ const campaign = require('../middleware/uploads');
 const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
 
-//Campaign Register
+//Campaign Post
 router.post('/campaign/insert',campaign.single('campaignImage'),(req, res) => {
 	console.log("Entered Campaign Insert Route");
 	const errors = validationResult(req);
@@ -61,12 +61,14 @@ router.post('/campaign/insert',campaign.single('campaignImage'),(req, res) => {
 	}
 });
 
+// Campaign All Display
 router.get('/campaign/display',(req,res) => {
 	Campaign.find().then(function(Post){
 		res.send(Post);
 	})
 });
 
+// Campaign Limit 3
 router.get('/campaign/display/limit=3',(req,res) => {
 	Campaign.find().limit(3)
 	.then(function(Post){
@@ -74,6 +76,25 @@ router.get('/campaign/display/limit=3',(req,res) => {
 	})
 });
 
+// Campaign Latest
+router.get('/campaign/latest/limit=2',(req,res) => {
+	var mysort = { campaignPostDtae: -1 };
+	Campaign.find().sort(mysort).limit(2)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
+// Campaign Latest
+router.get('/campaign/latest/limit=3',(req,res) => {
+	var mysort = { campaignPostDtae: -1 };
+	Campaign.find().sort(mysort).limit(3)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
+// Campaign Category : Education
 router.get('/campaign/display/education',(req,res) => {
 	var education = { campaignCategories: "Education" };
 	Campaign.find(education)
@@ -82,7 +103,7 @@ router.get('/campaign/display/education',(req,res) => {
 	})
 });
 
-// User Display Single
+// Campaign Display Single
 router.get("/campaign/display/:id",function(req,res){    
     const id = req.params.id;
     Campaign.findOne({_id:id})

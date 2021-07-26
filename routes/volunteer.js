@@ -68,6 +68,13 @@ router.get('/volunteer/display',(req,res) => {
 	})
 });
 
+router.get('/volunteer/count',(req,res) => {
+	Volunteer.find().count()
+	.then(function(volunteerDetails){
+		res.send(volunteerDetails);
+	})
+});
+
 // Volunteer Display Single
 router.get("/volunteer/display/:id",function(req,res){    
     const id = req.params.id;

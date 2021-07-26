@@ -7,6 +7,7 @@ const jsonWebToken = require('jsonwebtoken');
 
 
 const {signup,activateAccount,forgetPassword,resetPassword} = require("../middleware/auth");
+const user = require('../models/user');
 //User Register
 router.post('/user/register',signup);
 
@@ -79,6 +80,12 @@ router.get("/account/:id",function(req,res){
     .catch(function(err){
         res.status(500).json({message : err})
     })
+});
+
+router.get('/user/display',(req,res) => {
+	User.find().then(function(userDetails){
+		res.send(userDetails);
+	})
 });
 
 module.exports = router;
