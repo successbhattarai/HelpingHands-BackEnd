@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Event = require('../models/event');
 const bcrypt = require('bcryptjs');
-const event = require('../middleware/uploads');
+const event = require('../middleware/uploadsEvent');
 const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
 

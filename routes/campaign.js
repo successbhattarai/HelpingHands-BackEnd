@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Campaign = require('../models/campaign');
 const bcrypt = require('bcryptjs');
-const campaign = require('../middleware/uploads');
+const campaign = require('../middleware/uploadsCampaign');
 const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
 
@@ -98,6 +98,15 @@ router.get('/campaign/latest/limit=3',(req,res) => {
 router.get('/campaign/display/education',(req,res) => {
 	var education = { campaignCategories: "Education" };
 	Campaign.find(education)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
+// Campaign Category : Education
+router.get('/campaign/display/environment',(req,res) => {
+	var environment = { campaignCategories: "Environment" };
+	Campaign.find(environment)
 	.then(function(Post){
 		res.send(Post);
 	})

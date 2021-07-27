@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Volunteer = require('../models/volunteer');
 const bcrypt = require('bcryptjs');
-const volunteer = require('../middleware/uploads');
+const volunteer = require('../middleware/uploadsVolunteer');
 const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
 
