@@ -18,7 +18,7 @@ router.post('/user/email-activate',activateAccount);
 
 
 router.put('/user/forget-password', forgetPassword)
-router.put('/user/reset-password', resetPassword)
+router.put('/user/resetpassword', resetPassword)
 
 
 // User Login
