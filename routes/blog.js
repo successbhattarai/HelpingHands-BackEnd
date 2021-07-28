@@ -25,6 +25,7 @@ router.post('/blog/insert',blog.single('blogImage'),(req, res) => {
 		const blogDescription = req.body.blogDescription;
 		const blogDetail = req.body.blogDetail;
 		const blogTags = req.body.blogTags;
+		const blogPostedBy = req.body.blogPostedBy;
 
 
 		var blogDetails = new Blog({
@@ -33,6 +34,7 @@ router.post('/blog/insert',blog.single('blogImage'),(req, res) => {
 			blogDescription: blogDescription,
 			blogDetail: blogDetail,
 			blogTags: blogTags,
+			blogPostedBy : blogPostedBy,
 		});
 				
 	    blogDetails.save()
@@ -56,6 +58,17 @@ router.post('/blog/insert',blog.single('blogImage'),(req, res) => {
 router.get('/blog/display',(req,res) => {
 	Blog.find().then(function(blogDetails){
 		res.send(blogDetails);
+	})
+});
+
+// User Display Single
+router.get("/my-blog/display/:id",function(req,res){    
+    const id = req.params.id;
+	console.log(id)
+	var myblog = { blogPostedBy: id };
+	Blog.find(myblog)
+	.then(function(Post){
+		res.send(Post);
 	})
 });
 

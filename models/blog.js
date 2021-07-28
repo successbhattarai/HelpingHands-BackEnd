@@ -10,6 +10,7 @@ const Blog = mongoose.model('Blog', {
      blogDescription: { type: String, require :true},
      blogDetail: { type: String, require :true},
      blogTags: { type: String,require:true},
+     blogPostedBy:{ type: String, default: "Admin"},
      blogPostDate:{ type: Date, default: Date.now}
 });
 
