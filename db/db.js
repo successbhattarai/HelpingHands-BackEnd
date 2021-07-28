@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
  mongoose.Promise=global.Promise;
- const connectdb = async () =>{
+ const connectDB = async () =>{
 	 const coll = await mongoose.connect(
-		 process.env.MONGO_URI || 'mongodb://localhost:27017/helpinghands',
+		 "mongodb+srv://admin:admin@helpinghands.mfykl.mongodb.net/helpinghands?retryWrites=true&w=majority" || 'mongodb://localhost:27017/helpinghands',
 		 {
 
 			useNewUrlParser: true,
@@ -14,5 +14,7 @@ const mongoose = require('mongoose');
 			useUnifiedTopology: true,
 	  
 		  }
-		 )
+		 );
+		 console.log(`MongoDB connected to : ${coll.connection.host}`);
  };
+ module.exports = connectDB;
