@@ -7,7 +7,7 @@ const static_path = path.join(__dirname,'');
 
 // Connect to mongoDB database
 require('dotenv').config();
-require("./db/db");
+const db = require("./db/db");
 
 const userRoutes = require('./routes/user');
 const contactRoutes = require('./routes/contact');
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.get("/", (req, res)=>{
      res.send("Welcome to helping hands");
 })
-const port = process.env.PORT;
-app.listen(port,() => {
-     console.log(`Server is running on Port No. ${port}`)
+const PORT = process.env.PORT;
+app.listen(PORT,() => {
+     console.log(`Server is running on Port No. ${PORT}`)
 });

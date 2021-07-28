@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
+ mongoose.Promise=global.Promise;
+ const connectdb = async () =>{
+	 const coll = await mongoose.connect(
+		 process.env.MONGO_URI || 'mongodb://localhost:27017/helpinghands',
+		 {
 
-mongoose.connect('mongodb://localhost:27017/HelpingHands',{
-		useNewUrlParser: true,
-		useCreateIndex: true,
-		useUnifiedTopology: true
-	})
-	.then(() =>{
-		console.log("MongoDB Connected");
-	})
-	.catch((e) => {
-		console.log("MongoDB Connection Failed");
-}); 	
-
+			useNewUrlParser: true,
+	  
+			useCreateIndex: true,
+	  
+			useFindAndModify: false,
+	  
+			useUnifiedTopology: true,
+	  
+		  }
+		 )
+ };
