@@ -6,20 +6,54 @@ const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
 
 
-const {signup,activateAccount,forgetPassword,resetPassword} = require("../middleware/auth");
-const user = require('../models/user');
-const { addListener } = require('../models/user');
-//User Register
-router.post('/user/register',signup);
+// const {signup,activateAccount,forgetPassword,resetPassword} = require("../middleware/auth");
+// const user = require('../models/user');
+// const { addListener } = require('../models/user');
+// //User Register
+// router.post('/user/register',signup);
 
-//email-activate
-router.post('/user/email-activate',activateAccount);
+// //email-activate
+// router.post('/user/email-activate',activateAccount);
 
-//forget password
+// //forget password
 
 
-router.put('/user/forget-password', forgetPassword)
-router.put('/user/resetpassword', resetPassword)
+// router.put('/user/forget-password', forgetPassword)
+// router.put('/user/resetpassword', resetPassword)
+
+// User Register
+router.post('/user/register',function(req,res){
+	const errors = validationResult(req);
+
+	if(!errors.isEmpty()){
+		res.send(errors.array());
+	}
+	else{
+		const userFullName=req.body.userFullName;
+        const userContactNumber = req.body.userContactNumber;
+        const userEmailAddress = req.body.userEmailAddress;
+		const userPassword = req.body.userPassword;
+        bcrypt.hash(userPassword,10,function(error,hash){
+			var userDetails = new Contact({
+				userFullName:userFullName,
+				userContactNumber:userContactNumber,
+				userEmailAddress:userEmailAddress,
+				userPassword:hash
+			});
+			userDetails.save()
+			.then(function(data){
+				//Success Insert
+				res.status(200).json({success:true,data:data,message: "Message Sent Successfully"});
+			})
+			.catch(function(err){
+				// Internal Server Error
+				res.status(500).json({message: "Message Sent Failed, Please Try Again"})
+			});
+			console.log(userDetails);
+			console.log("Message Sent Successfully")
+		})
+	}
+})
 
 
 // User Login

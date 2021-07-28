@@ -6,7 +6,7 @@ const DOMAIN='sandboxdcad29f2a7ba4aba8110929f739d0618.mailgun.org';
 const mg = mailgun({apiKey:process.env.MAILGUN_APIKEY, domain:DOMAIN});
 
 exports.signup=(req, res)=>{
-    const{userFirstName,userEmailAddress,userPassword,userContactNumber}=req.body;
+    const{userFullName,userEmailAddress,userPassword,userContactNumber}=req.body;
     User.findOne({userEmailAddress}).exec((err,user) =>{
         if(user)
         {
@@ -15,7 +15,7 @@ exports.signup=(req, res)=>{
         
 
 
-const token=jwt.sign({userFirstName,userEmailAddress,userPassword,userContactNumber},process.env.JWT_ACC_ACTIVATE,{expiresIn:'20m'});
+const token=jwt.sign({userFullName,userEmailAddress,userPassword,userContactNumber},process.env.JWT_ACC_ACTIVATE,{expiresIn:'20m'});
 const data={
     from:'bar@example.com',
     to:userEmailAddress,
@@ -39,13 +39,13 @@ const data={
                 if(err){
                     return res.status(400).json({error:'Incorrect or Expired link.'})
                 }
-                const{userFirstName,userEmailAddress,userPassword,userContactNumber}=decodedToken;
+                const{userFullName,userEmailAddress,userPassword,userContactNumber}=decodedToken;
                 User.findOne({userEmailAddress}).exec((err,user)=>
                 {
                     if(user){
                         return res.status(400).json({error:'user with this Email Address already exits'});
                     }
-                    let newUser= new User({userFirstName,userEmailAddress,userPassword,userContactNumber});
+                    let newUser= new User({userFullName,userEmailAddress,userPassword,userContactNumber});
                     newUser.save((err,success)=>{
                         if(err){
                             console.log("Error is signup :",err);
