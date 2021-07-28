@@ -8,6 +8,7 @@ const jsonWebToken = require('jsonwebtoken');
 
 const {signup,activateAccount,forgetPassword,resetPassword} = require("../middleware/auth");
 const user = require('../models/user');
+const { addListener } = require('../models/user');
 //User Register
 router.post('/user/register',signup);
 
@@ -88,8 +89,28 @@ router.get('/user/display',(req,res) => {
 	})
 });
 
+router.put('/user/load-balance',(req,res) => {
+	const id = req.body.id;
+	const userBalance = req.body.userBalance 
+	const userNewBalance = req.body.userNewBalance 
+	const Balance = parseInt(userBalance) + parseInt(userNewBalance)
+
+	console.log("Load-Balance of Id : " + id)
+	console.log("Load-Balance Amount : " + req.body.userNewBalance)
+	console.log("Your New Balance Amount: " + Balance)
+
+    User.updateOne({_id:id},{
+		userBalance : Balance
+	})
+	.then(function(result){
+		res.status(200).json(result);
+	})
+	.catch(function(err){
+		res.status(500).json({message : err})
+	})
+});
+
 router.get('/my-account/display/:id',(req,res) => {
-	console.log("Account")
     const id = req.params.id;
 	console.log(id)
     User.findOne({_id:id})
