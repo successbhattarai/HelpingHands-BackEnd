@@ -61,7 +61,7 @@ router.get('/blog/display',(req,res) => {
 	})
 });
 
-// User Display Single
+// My BLog Display
 router.get("/my-blog/display/:id",function(req,res){    
     const id = req.params.id;
 	console.log(id)

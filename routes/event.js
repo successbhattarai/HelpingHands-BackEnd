@@ -30,6 +30,7 @@ router.post('/event/insert',event.single('eventImage'),(req, res) => {
 		const eventCategories = req.body.eventCategories;
 		const eventLocation = req.body.eventLocation;
 		const eventFullDescription = req.body.eventFullDescription;
+		const eventPostedBy = req.body.eventPostedBy;
 		
 
 
@@ -44,6 +45,7 @@ router.post('/event/insert',event.single('eventImage'),(req, res) => {
 			eventCategories: eventCategories,
 			eventLocation: eventLocation,
 			eventFullDescription: eventFullDescription,
+			eventPostedBy : eventPostedBy,
 			
 		});
 				
@@ -87,7 +89,17 @@ router.get('/event/display/limit=3',(req,res) => {
 	})
 });
 
-// User Display Single
+router.get("/my-event/display/:id",function(req,res){    
+    const id = req.params.id;
+	console.log(id)
+	var myevent = { eventPostedBy: id };
+	Event.find(myevent)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
+// Event Display Single
 router.get("/event/display/:id",function(req,res){    
     const id = req.params.id;
     Event.findOne({_id:id})
@@ -98,7 +110,5 @@ router.get("/event/display/:id",function(req,res){
         res.status(500).json({message : err})
     })
 });
-
-
 
 module.exports = router;

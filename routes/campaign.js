@@ -28,6 +28,7 @@ router.post('/campaign/insert',campaign.single('campaignImage'),(req, res) => {
 		const campaignCategories = req.body.campaignCategories;
 		const campaignTags = req.body.campaignTags;
 		const campaignFullDescription = req.body.campaignFullDescription;
+		const campaignPostedBy = req.body.campaignPostedBy;
 		
 
 
@@ -40,6 +41,7 @@ router.post('/campaign/insert',campaign.single('campaignImage'),(req, res) => {
 			campaignCategories: campaignCategories,
 			campaignTags: campaignTags,
 			campaignFullDescription: campaignFullDescription,
+			campaignPostedBy : campaignPostedBy,
 			
 		});
 				
@@ -78,7 +80,7 @@ router.get('/campaign/display/limit=3',(req,res) => {
 
 // Campaign Latest
 router.get('/campaign/latest/limit=2',(req,res) => {
-	var mysort = { campaignPostDtae: -1 };
+	var mysort = { campaignPostDate: -1 };
 	Campaign.find().sort(mysort).limit(2)
 	.then(function(Post){
 		res.send(Post);
@@ -87,8 +89,19 @@ router.get('/campaign/latest/limit=2',(req,res) => {
 
 // Campaign Latest
 router.get('/campaign/latest/limit=3',(req,res) => {
-	var mysort = { campaignPostDtae: -1 };
+	var mysort = { campaignPostDate: -1 };
 	Campaign.find().sort(mysort).limit(3)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
+// My BLog Display
+router.get("/my-campaign/display/:id",function(req,res){    
+    const id = req.params.id;
+	console.log(id)
+	var mycampaign = { campaignPostedBy: id };
+	Campaign.find(mycampaign)
 	.then(function(Post){
 		res.send(Post);
 	})

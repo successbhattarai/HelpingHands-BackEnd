@@ -15,6 +15,7 @@ const Event = mongoose.model('Event', {
      eventCategories: { type: String,require:true},
      eventLocation: { type: String,require:true},
      eventFullDescription: { type: String, require :true},
+     eventPostedBy:{ type: String, default: "Admin"},
      eventPostDtae:{ type: Date, default: Date.now}
 });
 

@@ -13,7 +13,8 @@ const Donation = mongoose.model('Donation', {
     donorCity: { type: String, require :true},
     donorPostalCode: { type: String, require :true},
     donorDonated: { type: String, require :true},
-    donatedDtae:{ type: Date, default: Date.now}
+    donatedBy: { type: String, default:"Admin"},
+    donatedDate:{ type: Date, default: Date.now}
 });
 
 module.exports = Donation;

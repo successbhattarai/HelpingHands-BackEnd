@@ -13,7 +13,8 @@ const Campaign = mongoose.model('Campaign', {
      campaignCategories: { type: String,require:true},
      campaignTags: { type: String,require:true},
      campaignFullDescription: { type: String, require :true},
-     campaignPostDtae:{ type: Date, default: Date.now}
+     campaignPostedBy:{ type: String, default: "Admin"},
+     campaignPostDate:{ type: Date, default: Date.now}
 });
 
 module.exports = Campaign;

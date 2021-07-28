@@ -21,6 +21,7 @@ router.post('/donate',
         const donorCity = req.body.donorCity;
         const donorPostalCode = req.body.donorPostalCode;
         const donorDonated = req.body.donorDonated;
+        const donatedBy = req.body.donatedBy;
         
         var donate = new Donation({
             donorFullName:donorFullName,
@@ -28,7 +29,7 @@ router.post('/donate',
             donorContactNumber:donorContactNumber,
             donorAddress1:donorAddress1,
             donorAddress2: donorAddress2,
-
+            donatedBy: donatedBy,
             donorCity: donorCity,
             donorPostalCode: donorPostalCode,
             donorDonated: donorDonated,
@@ -52,4 +53,16 @@ router.get('/donation/display',(req,res) => {
 		res.send(donationDetails);
 	})
 });
+
+router.get("/my-donation/display/:id",function(req,res){    
+    const id = req.params.id;
+	console.log(id)
+	var mydonation = { donatedBy: id };
+	Donation.find(mydonation)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
+
 module.exports = router;
