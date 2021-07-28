@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const jsonWebToken = require('jsonwebtoken');
 
 const Donation = mongoose.model('Donation', {
-
+    campaignId: { type: String, require :true},
+    campaignName: { type: String, require :true},
     donorFullName: { type: String, require :true},
     donorEmailAddress: { type: String, require:true},
     donorContactNumber: { type: String, require :true},

@@ -13,6 +13,8 @@ router.post('/donate',
 		res.send(errors.array());
 	}
 	else{
+		const campaignId=req.body.campaignId;
+		const campaignName=req.body.campaignName;
 		const donorFullName=req.body.donorFullName;
         const donorEmailAddress = req.body.donorEmailAddress;
         const donorContactNumber = req.body.donorContactNumber;
@@ -24,6 +26,8 @@ router.post('/donate',
         const donatedBy = req.body.donatedBy;
         
         var donate = new Donation({
+            campaignId:campaignId,
+            campaignName:campaignName,
             donorFullName:donorFullName,
             donorEmailAddress:donorEmailAddress,
             donorContactNumber:donorContactNumber,
