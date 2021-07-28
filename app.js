@@ -28,6 +28,9 @@ app.use(campaignRoutes);
 app.use(donationRoutes);
 app.use(bodyParser.urlencoded({extended:false}));
 
+app.get("/", (req, res)=>{
+     res.send("Welcome to helping hands");
+})
 const port = process.env.PORT;
 app.listen(port,() => {
      console.log(`Server is running on Port No. ${port}`)
