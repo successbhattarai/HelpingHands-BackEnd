@@ -125,6 +125,15 @@ router.get('/campaign/display/environment',(req,res) => {
 	})
 });
 
+// Campaign Category : Medical Expenses
+router.get('/campaign/display/medical-expenses',(req,res) => {
+	var medical = { campaignCategories: "Medical Expenses" };
+	Campaign.find(medical)
+	.then(function(Post){
+		res.send(Post);
+	})
+});
+
 // Campaign Display Single
 router.get("/campaign/display/:id",function(req,res){    
     const id = req.params.id;

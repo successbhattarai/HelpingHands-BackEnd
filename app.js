@@ -1,6 +1,7 @@
 const express = require('express'); //Third Party
 const bodyParser = require('body-parser'); // Core Module
 const connectDB = require("./db/db");
+const cloudinary = require('cloudinary')
 const app = express();
 const path = require('path');
 const cors = require('cors');
@@ -12,6 +13,12 @@ env.config({
      path:"./env"
 }  
 );
+
+cloudinary.config({ 
+     cloud_name: 'successbhattarai', 
+     api_key: '368687285388311', 
+     api_secret: 'OcybZydr2_4bPewY58DMA11skT8' 
+});
 
 connectDB();
 

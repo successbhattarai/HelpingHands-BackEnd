@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
  mongoose.Promise=global.Promise;
  const connectDB = async () =>{
 	 const coll = await mongoose.connect(
-		 "mongodb+srv://admin:admin@helpinghands.mfykl.mongodb.net/helpinghands?retryWrites=true&w=majority" || 'mongodb://localhost:27017/helpinghands',
+		"mongodb+srv://admin:admin@helpinghands.mfykl.mongodb.net/helpinghands?retryWrites=true&w=majority" || 'mongodb://localhost:27017/HelpingHands',
 		 {
 
 			useNewUrlParser: true,

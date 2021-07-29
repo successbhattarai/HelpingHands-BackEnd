@@ -3,6 +3,7 @@
     "agent-base": "^4.3.0",
     "audit": "^0.0.6",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.26.2",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
@@ -20,14 +21,14 @@
   "name": "backend",
   "version": "1.0.0",
   "engines": {
-    "node":"14.15.1",
-    "npm":"6.14.8"
+    "node": "14.15.1",
+    "npm": "6.14.8"
   },
   "main": "app.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node app.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
