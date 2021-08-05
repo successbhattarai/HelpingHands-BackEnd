@@ -7,12 +7,20 @@ const path = require('path');
 const cors = require('cors');
 const static_path = path.join(__dirname,'');
 
+const exphbs = require('express-handlebars')
+
+const nodemailer = require('nodemailer');
+
 // Connect to mongoDB database
 const  env = require('dotenv');
 env.config({
      path:"./env"
 }  
 );
+
+//view engine setup
+app.engine('handlebars',exphbs());
+app.set('view engine','handlerbars');
 
 cloudinary.config({ 
      cloud_name: 'successbhattarai', 
