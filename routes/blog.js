@@ -17,8 +17,8 @@ router.post("/blog/insert", upload.single("images"), async (req, res) => {
       cloudinary_id: result.public_id,
     });
     // Save user
-    await user.save();
-    res.json(user);
+    await blog.save();
+    res.json(blog);
   } catch (err) {
     console.log(err);
   }
