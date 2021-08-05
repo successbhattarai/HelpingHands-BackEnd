@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blog');
 const bcrypt = require('bcryptjs');
+const cloudinary = require('cloudinary').v2;
 const blog = require('../middleware/uploadsBlog');
 const {check, validationResult} = require('express-validator');
 const jsonWebToken = require('jsonwebtoken');
@@ -26,7 +27,6 @@ router.post('/blog/insert',blog.single('blogImage'),(req, res) => {
 		const blogDetail = req.body.blogDetail;
 		const blogTags = req.body.blogTags;
 		const blogPostedBy = req.body.blogPostedBy;
-
 
 		var blogDetails = new Blog({
 			blogImage: blogImage,
