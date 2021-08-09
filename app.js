@@ -3,7 +3,6 @@ const bodyParser = require('body-parser'); // Core Module
 const connectDB = require("./db/db");
 const app = express();
 const path = require('path');
-const cors = require('cors');
 const static_path = path.join(__dirname,'');
 
 
@@ -27,7 +26,6 @@ const eventRoutes = require('./routes/event');
 const donationRoutes = require('./routes/donation');
 app.use(express.static(static_path))
 app.use(express.json())
-app.use(cors());
 app.use(userRoutes);
 app.use(contactRoutes);
 app.use(volunteerRoutes);
@@ -37,8 +35,18 @@ app.use(campaignRoutes);
 app.use(donationRoutes);
 app.use(bodyParser.urlencoded({extended:false}));
 
+// enable CORS without external module
+app.use(function (req, res, next) {
+     res.header("Access-Control-Allow-Origin", "*");
+     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+     next();
+});
+
 app.get("/", (req, res)=>{
      res.send("Welcome to helping hands");
 })
 const PORT = process.env.PORT || 9000;
 app.listen(PORT);
+
+const cors = require('cors');
+app.use(cors());
