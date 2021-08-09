@@ -5,29 +5,27 @@ const cloudinary = require("../utils/cloudinary");
 const upload = require("../utils/multer");
 
 
-// router.post("/blog/insert", upload.single("images"), async (req, res) => {
-//   try {
-//     // Upload image to cloudinary
-//     const result = await cloudinary.uploader.upload(req.file.path);
+router.post("/blog/insert", upload.single("images"), async (req, res) => {
+  try {
+    // Upload image to cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path);
 
-//     // Create new user
-//     let blog = new Blog({
-//     //  blogImage = req.file.filename,
-//       blogTitle = req.body.blogTitle,
-// 		blogDescription = req.body.blogDescription,
-// 		 blogDetail = req.body.blogDetail,
-//  		 blogTags = req.body.blogTags,
-//  		 blogPostedBy = req.body.blogPostedBy,
-//       avatar: result.secure_url,
-//       cloudinary_id: result.public_id,
-//     });
-//     // Save user
-//     await blog.save();
-//     res.json(blog);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+    // Create new user
+    let blog = new Blog({
+        blogTitle :req.body.blogTitle,
+		blogDescription : req.body.blogDescription,
+		 blogDetail : req.body.blogDetail,
+ 		 blogTags : req.body.blogTags,
+ 		 blogPostedBy : req.body.blogPostedBy,
+          blogImage: result.secure_url
+    });
+    // Save user
+    await blog.save();
+    res.json(blog);
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 
 
