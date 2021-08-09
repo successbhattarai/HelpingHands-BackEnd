@@ -12,7 +12,12 @@ router.post("/blog/insert", upload.single("images"), async (req, res) => {
 
     // Create new user
     let blog = new Blog({
-      name: req.body.name,
+      blogImage = req.file.filename,
+      blogTitle = req.body.blogTitl,
+		blogDescription = req.body.blogDescription,
+		 blogDetail = req.body.blogDetail,
+ 		 blogTags = req.body.blogTags,
+ 		 blogPostedBy = req.body.blogPostedBy,
       avatar: result.secure_url,
       cloudinary_id: result.public_id,
     });
@@ -23,6 +28,8 @@ router.post("/blog/insert", upload.single("images"), async (req, res) => {
     console.log(err);
   }
 });
+
+
 
 
 
