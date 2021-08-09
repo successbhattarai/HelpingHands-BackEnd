@@ -1,5 +1,5 @@
 module.exports = {
   secret: "USE YOUR KEY",
-  user: "USE YOUR EMAIL",
-  pass: "USE YOUR PASSWORD",
+  user: "sandipluitel07@gmail.com",
+  pass: "sandip-5413",
 };

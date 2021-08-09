@@ -1,35 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const {check, validationResult} = require('express-validator');
+
 const user = require("../models/User");
 const jwt = require("jsonwebtoken");
 const userconfig = require("../config/user.config");
 const nodemailer = require("../config/nodemailer.config");
 
-
-
-
-
-
-
-
-
-
 router.post("/user/register", function (req, res) {
 	const token = jwt.sign({ userEmailAddress: req.body.userEmailAddress }, userconfig.secret);
 	var userData = new user({
-		userFullName: req.body.userFullName,
-		userContactNumber: req.body.userContactNumber,
+	  userFullName: req.body.userFullName,
+	  userContactNumber: req.body.userContactNumber,
 	  userEmailAddress: req.body.userEmailAddress,
 	  userPassword: req.body.userPassword,
 	  ConfirmationCode: token,
 	});
 	//for encrypting the password
 	bcrypt.genSalt(10, (err, salt) => {
-	  bcrypt.hash(userData.Password, salt, (err, hash) => {
+	  bcrypt.hash(userData.userPassword, salt, (err, hash) => {
 		if (err) throw err;
-		userData.Password = hash;
+		userData.userPassword = hash;
 		userData.save((err) => {
 		  if (err) {
 			res.status(500).send({ message: err });

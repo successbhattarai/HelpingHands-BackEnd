@@ -12,14 +12,14 @@ const transport = nodemailer.createTransport({
   },
 });
 
-module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
+module.exports.sendConfirmationEmail = (userFullName, userEmailAddress, confirmationCode) => {
   transport
     .sendMail({
       from: user,
-      to: email,
+      to: userEmailAddress,
       subject: "Please confirm your account",
       html: `<h1>Email Confirmation</h1>
-        <h2>Hello ${name}</h2>
+        <h2>Hello ${userFullName}</h2>
         <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
         <a href=http://localhost:3000/user/confirm/${confirmationCode}> Click here</a>
         <p>${confirmationCode}</p>
