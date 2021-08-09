@@ -1,7 +1,6 @@
 const express = require('express'); //Third Party
 const bodyParser = require('body-parser'); // Core Module
 const connectDB = require("./db/db");
-const cloudinary = require('cloudinary').v2;
 const app = express();
 const path = require('path');
 const cors = require('cors');
