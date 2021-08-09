@@ -7,9 +7,7 @@ const path = require('path');
 const cors = require('cors');
 const static_path = path.join(__dirname,'');
 
-const exphbs = require('express-handlebars')
 
-const nodemailer = require('nodemailer');
 
 // Connect to mongoDB database
 const  env = require('dotenv');
@@ -18,15 +16,6 @@ env.config({
 }  
 );
 
-//view engine setup
-app.engine('handlebars',exphbs());
-app.set('view engine','handlerbars');
-
-cloudinary.config({ 
-     cloud_name: 'successbhattarai', 
-     api_key: '368687285388311', 
-     api_secret: 'OcybZydr2_4bPewY58DMA11skT8' 
-});
 
 connectDB();
 

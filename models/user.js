@@ -11,9 +11,15 @@ const userSchema = new mongoose.Schema( {
     userEmailAddress: { type: String, require:true, unique:true },
     userContactNumber: { type: String, require :true},
     userPassword: { type: String, require :true},
-    resetLink:{
-        data:String,
-        default:''}
+    ConfirmationCode: {
+        type: String,
+        unique: true,
+      },
+      Status: {
+        type: String,
+        enum: ["NotVerified", "Verified"],
+        default: "NotVerified",
+      },
 });
 
 module.exports = mongoose.model('User',userSchema);
