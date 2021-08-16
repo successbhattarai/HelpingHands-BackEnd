@@ -24,6 +24,7 @@ const blogRoutes = require('./routes/blog');
 const campaignRoutes = require('./routes/campaign');
 const eventRoutes = require('./routes/event');
 const donationRoutes = require('./routes/donation');
+const laterRoutes = require('./routes/later');
 app.use(express.static(static_path))
 app.use(express.json())
 app.use(userRoutes);
@@ -33,6 +34,7 @@ app.use(blogRoutes);
 app.use(eventRoutes);
 app.use(campaignRoutes);
 app.use(donationRoutes);
+app.use(laterRoutes);
 app.use(bodyParser.urlencoded({extended:false}));
 
 // enable CORS without external module
@@ -45,7 +47,7 @@ app.use(function (req, res, next) {
 app.get("/", (req, res)=>{
      res.send("Welcome to helping hands");
 })
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT);
 
 const cors = require('cors');
