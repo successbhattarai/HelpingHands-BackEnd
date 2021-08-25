@@ -44,7 +44,7 @@ app.use(function (req, res, next) {
      next();
 });
 
-app.get("", (req, res)=>{
+app.get("/", (req, res)=>{
      res.send("Welcome to helping hands");
 })
 const PORT = process.env.PORT || 3000;
