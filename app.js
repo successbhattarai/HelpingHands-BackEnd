@@ -4,6 +4,8 @@ const connectDB = require("./db/db");
 const app = express();
 const path = require('path');
 const static_path = path.join(__dirname,'');
+const cors = require('cors');
+app.use(cors());
 
 
 
@@ -50,5 +52,3 @@ app.get("/", (req, res)=>{
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
 
-const cors = require('cors');
-app.use(cors());
